@@ -1,0 +1,10 @@
+SET sql_mode = 'PIPES_AS_CONCAT';
+
+SELECT ID,NAME,MARKS ||
+             case when marks > 90 then 'A+'
+             when marks > 70 then 'A'
+             when marks > 50 then 'B'
+             when marks >= 40 then 'C'
+             when marks < 40 then 'FAIL'
+             
+             END AS Grade   FROM STUDENT order by ID
