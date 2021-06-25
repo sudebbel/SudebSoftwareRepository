@@ -1,24 +1,63 @@
 
+#include <stdio.h>
+#include <string.h>
 
-//The function will take as input a string and return a boolean that is true if the word or phrase is a palindrome and false otherwise
 
-bool isPalindrome(char str[])
+// A function to check if a string str is palindrome
+void isPalindrome(char str[])
 {
     // Start from leftmost and rightmost corners of str
-    int l = 0;
-    int h = strlen(str) - 1;
-  
+    int l = 0,h=0,i=0;
+
+    unsigned char *pVal=str;
+       h = strlen(str)-1 ;
+
+       char cLocalBuf[h];
+
+
+
+       for (i = 0; *(pVal+i)!='\0'; i++)
+       {
+
+           cLocalBuf[i]=*(pVal+i);
+           if(cLocalBuf[i] >= 'a' && cLocalBuf[i] <= 'z')
+           {
+              cLocalBuf[i] = cLocalBuf[i] - 32;
+           }
+
+
+        }
+
+       cLocalBuf[i]='\0';
+
+
+
     // Keep comparing characters while they are same
     while (h > l)
     {
-        if (str[l++] != str[h--])
+
+
+
+
+        if (  cLocalBuf[l++] != cLocalBuf[h--] )
         {
-            printf("%s is Not Palindrome", str);
-            return false;
+            printf("\n%s is Not Palindrome\n", cLocalBuf);
+            return;
         }
     }
-    printf("%s is palindrome", str);
+    printf("\n%s is palindrome\n", cLocalBuf);
 
-    return true;
+
+
 }
+
+// Driver program to test above function
+int main()
+{
+    isPalindrome("1881");
+    isPalindrome("Dad");
+    isPalindrome("Step on no pets");
+    return 0;
+}
+
   
